@@ -15,12 +15,6 @@ var
   Harga : longint;
   Ulang: char;
 
-procedure MasukkanNama(var T: konser); //prosedur untuk menyimpan setiap nama pemesan
-begin
-  write('Masukkan nama Anda: ');
-  readln(T.Nama);
-end;
-
 function TentukanHarga(JenisTiket: string): longint; //fungsi untuk menentukan harga setiap jenis tiket
 begin
   case JenisTiket of
@@ -35,6 +29,8 @@ end;
 
 procedure PilihTiket(var T: konser); //prosedur untuk memilih jenis tiket
 begin
+  write('Masukkan nama Anda: ');
+  readln(T.Nama);
   writeln('Pilih jenis tiket:');
   writeln('1. VVIP    : 1.500.000');
   writeln('2. VIP     : 1.000.000'); 
@@ -42,7 +38,7 @@ begin
   writeln('4. Economy : 250.000');
   write('Masukkan pilihan tiket (1/2/3/4): ');
   readln(T.Jenis);
-  T.Harga := TentukanHarga(T.Jenis);
+  T.Harga := TentukanHarga(T.Jenis); //memanggil prosedur
   
   case T.Jenis of  //untuk menyimpan nama tiket sesuai inputan user
     '1': T.Jenis := 'VVIP';
@@ -79,7 +75,7 @@ begin
   for i := 1 to JumlahTiket do
   begin
     writeln('Pemesanan tiket ke-', i, ':');
-    TampilkanRincianTiket(tiket[i]);
+    TampilkanRincianTiket(tiket[i]); //memanggil prosedur
     writeln;
     TotalSeluruh := TotalSeluruh + tiket[i].TotalHarga;
   end;
@@ -96,16 +92,15 @@ begin //main program
   repeat //perulangan jika user ingin menambah pesanan tiket
     JumlahTiket:=JumlahTiket+1;
     writeln('Pesan Tiket ke-', JumlahTiket);
-    MasukkanNama(tiket[JumlahTiket]);
-    PilihTiket(tiket[JumlahTiket]);
-    TotalJumlahTiket := TotalJumlahTiket + tiket[JumlahTiket].Jumlah;
+    PilihTiket(tiket[JumlahTiket]); //memanggil prosedur
+    TotalJumlahTiket := TotalJumlahTiket + tiket[JumlahTiket].Jumlah; //menghitung total jumlah tiket keseluruhan
 
     if JumlahTiket < 10 then //operasi kondisi untuk membatasi pesanan agar tidak lebih dari 10
     begin
       write('Apakah Anda ingin memesan tiket lagi? (y/n): ');
       readln(Ulang);
     end;
-  until (Ulang = 'n') or (JumlahTiket = 10); //pesan ulang jika user ingin tambah pesanan
+  until (Ulang <> 'y') or (JumlahTiket = 10); //pesan ulang jika user ingin tambah pesanan
   
   TampilkanSemuaTiket; //memanggil prosedur 
   writeln('Terima kasih telah memesan tiket! Selamat menikmati konser.');
