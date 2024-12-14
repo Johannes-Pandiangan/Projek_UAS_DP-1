@@ -1,7 +1,7 @@
 program PesanTiketKonser;
 uses crt;
 
-type konser = record //record untuk mengunmpulkan data pesanan
+type konser = record //record untuk mengumpulkan rincian data pemesan dan pesanannya 
     Nama: string;
     Jenis: string;
     Harga: longint;
@@ -10,7 +10,7 @@ type konser = record //record untuk mengunmpulkan data pesanan
   end;
 
 var
-  tiket: array[1..10] of konser;  // Array untuk menyimpan hingga 10 tiket
+  tiket: array[1..10] of konser;  // Array untuk menyimpan hingga 10 inputan pembelian tiket
   JumlahTiket, TotalJumlahTiket: longint;
   Harga : longint;
   Ulang: char;
@@ -38,7 +38,7 @@ begin
   writeln('4. Economy : 250.000');
   write('Masukkan pilihan tiket (1/2/3/4): ');
   readln(T.Jenis);
-  T.Harga := TentukanHarga(T.Jenis); //memanggil prosedur
+  T.Harga := TentukanHarga(T.Jenis); //memanggil function untuk menentukan harga tiket
   
   case T.Jenis of  //untuk menyimpan nama tiket sesuai inputan user
     '1': T.Jenis := 'VVIP';
@@ -69,6 +69,7 @@ var
   i: Integer;
   TotalSeluruh: longint;
 begin
+  clrscr;
   writeln;
   writeln('=== Rincian Semua Tiket ===');
   TotalSeluruh := 0;
@@ -77,10 +78,10 @@ begin
     writeln('Pemesanan tiket ke-', i, ':');
     TampilkanRincianTiket(tiket[i]); //memanggil prosedur
     writeln;
-    TotalSeluruh := TotalSeluruh + tiket[i].TotalHarga;
+    TotalSeluruh := TotalSeluruh + tiket[i].TotalHarga; //menghitung total keseluruhan harga tiket
   end;
-  writeln('Jumlah Tiket yang dipesan: ', TotalJumlahTiket);
-  writeln('Total Harga Seluruh Tiket: Rp.', TotalSeluruh);
+  writeln('Jumlah Tiket yang dipesan: ', TotalJumlahTiket); //tampilkan total tiket keseluruhan yang dipesan
+  writeln('Total Harga Seluruh Tiket: Rp.', TotalSeluruh); //tampilkan tiotal harga keseluruhan harga tiketnya
 end;
 
 begin //main program
@@ -98,7 +99,7 @@ begin //main program
     if JumlahTiket < 10 then //operasi kondisi untuk membatasi pesanan agar tidak lebih dari 10
     begin
       write('Apakah Anda ingin memesan tiket lagi? (y/n): ');
-      readln(Ulang);
+      readln(Ulang); //menanyakan user apakah ingin menambah pesanan
     end;
   until (Ulang <> 'y') or (JumlahTiket = 10); //pesan ulang jika user ingin tambah pesanan
   
