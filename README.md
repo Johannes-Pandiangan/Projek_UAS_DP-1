@@ -5,7 +5,7 @@ Proyek pembelian tiket konser
 2.Rionaldo Benedictus Purba (241401064)
 
 Link Google drive Dokumentasi:
-(https://drive.google.com/drive/folders/1NwzlQbuVhjV5Or2r8g7YTO3g0YSgYm6_)
+https://drive.google.com/file/d/1sMherPhC80nI67oPA4y3G955PljeEXzW/view?usp=drivesdk
 
 Link Penjelasan YouTube:
 https://youtu.be/zvcxuQtd9YI?si=6WIQ24agZ2scbjTr
